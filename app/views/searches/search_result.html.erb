@@ -1,0 +1,32 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Name</th>
+        <th>Introdaction</th>
+      </tr>
+    </thead>
+    <% if @range == "User" %>
+    <h2>Users &nbsp; search for "<%= @search_word %>"</h2>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= image_tag user.get_profile_image, size: "50x50" %></td>
+          <td><%= user.name %></td>
+          <td><%= user.introduction %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% else %>
+    <h2>Books &nbsp; search for "<%= @search_word %>"</h2>
+    <tbody>
+      <% @books.each do |book| %>
+        <tr>
+          <td><%= image_tag book.user.get_profile_image, size: "50x50" %></td>
+          <td><%= book.title %></td>
+          <td><%= book.body %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% end %>
+</table>
