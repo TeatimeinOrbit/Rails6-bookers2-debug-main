@@ -1,6 +1,6 @@
 class BookCommentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_correct_user, { only: [:create, :destroy] }
+  before_action :ensure_correct_user, { only: [:destroy] }
 
   def create
     book = Book.find(params[:book_id])
@@ -27,7 +27,7 @@ class BookCommentsController < ApplicationController
   def book_comments_params
     params.require(:book_comment).permit(:comment)
   end
-  
+
 
   def ensure_correct_user
     @book = Book.find_by(id: params[:id])
