@@ -1,0 +1,15 @@
+<p>コメント件数:<%= book.book_comments.count %></p>
+<table class="table">
+  <% book.book_comments.each do |book_comment| %>
+  <tr>
+    <td><%= image_tag book_comment.user.get_profile_image, size:"40x40" %></td>
+    <td><%= book_comment.user.name %></td>
+    <td><%= book_comment.created_at.strftime('%Y%m%d') %>: <%= book_comment.comment %></td>
+    <% if book_comment.user == current_user %>
+      <td id="destroy_btn" class="btn btn-sm btn-danger">
+        <%= render 'book_comments/destroy', book: book %>
+      </td>
+    <% end %>
+  </tr>
+  <% end %>
+</table>
