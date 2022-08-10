@@ -6,9 +6,11 @@
     <td><%= book_comment.user.name %></td>
     <td><%= book_comment.created_at.strftime('%Y%m%d') %>: <%= book_comment.comment %></td>
     <% if book_comment.user == current_user %>
-      <td id="destroy_btn" class="btn btn-sm btn-danger">
-        <%= render 'book_comments/destroy', book: book %>
+
+      <td id="destroy_btn_<%= book_comment.id %>" class="btn btn-sm btn-danger">
+        <%= render 'book_comments/destroy', book: book_comment.book, book_comment: book_comment %>
       </td>
+
     <% end %>
   </tr>
   <% end %>

@@ -13,7 +13,10 @@ class BookCommentsController < ApplicationController
 
 
   def destroy
+    @book = Book.find(params[:book_id])
+
     BookComment.find(params[:id]).destroy
+    @book_comment = BookComment.new
   end
 
 
@@ -33,8 +36,8 @@ class BookCommentsController < ApplicationController
 
 
   def ensure_correct_user
-    @book = Book.find_by(id: params[:id])
-    return unless @book.user_id != current_user.id
+    @book_comment = BookComment.find_by(id: params[:id])
+    return unless @book_comment.user_id != current_user.id
     redirect_to books_path
   end
 
